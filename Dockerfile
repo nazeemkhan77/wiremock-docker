@@ -27,17 +27,17 @@ RUN mkdir -p /var/wiremock/lib/ \
   && wget https://repo1.maven.org/maven2/com/github/tomakehurst/wiremock-jre8-standalone/$WIREMOCK_VERSION/wiremock-jre8-standalone-$WIREMOCK_VERSION.jar \
     -O /var/wiremock/lib/wiremock-jre8-standalone.jar
 
-RUN mkdir -p /mnt/efs_data
+# RUN mkdir -p /mnt/efs_data
 # RUN chown -R app_user:app_user /mnt/efs_data
 
 
-# WORKDIR /home/wiremock
-WORKDIR /mnt/efs_data
+WORKDIR /home/wiremock
+# WORKDIR /mnt/efs_data
 
 COPY docker-entrypoint.sh /
 
-VOLUME /mnt/efs_data
-# VOLUME /home/wiremock
+# VOLUME /mnt/efs_data
+VOLUME /home/wiremock
 EXPOSE 8080 8443
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
